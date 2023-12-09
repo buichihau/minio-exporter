@@ -2,11 +2,13 @@ version: "3.8"
 services:
 
  minio_exporter:
-    image: minio_exporter:1.0
+    image: joepll/minio-exporter
     container_name: minio_exporter
     restart: always
     volumes:
        - /etc/localtime:/etc/localtime:ro
-    command:
-       - '/bin/minio_exporter -minio.server IP:9000 -minio.access-key "login_name" -minio.access-secret "login_password"'
+    environment:
+     - MINIO_URL=http://host.local:9000
+     - MINIO_ACCESS_KEY=loginname
+     - MINIO_ACCESS_SECRET=password
     network_mode: "host"
