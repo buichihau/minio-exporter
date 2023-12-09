@@ -1,0 +1,12 @@
+version: "3.8"
+services:
+
+ minio_exporter:
+    image: minio_exporter:1.0
+    container_name: minio_exporter
+    restart: always
+    volumes:
+       - /etc/localtime:/etc/localtime:ro
+    command:
+       - '/bin/minio_exporter -minio.server IP:9000 -minio.access-key "login_name" -minio.access-secret "login_password"'
+    network_mode: "host"
